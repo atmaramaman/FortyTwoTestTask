@@ -6,5 +6,5 @@ admin.autodiscover()
 urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'apps.hello.views.contacts', name='contact_page_view'),
+    url(r'^$', 'apps.hello.views.contact', name='contact_page_view'),
 ]
