@@ -11,17 +11,17 @@
             <div class="row">
                 <div class="col-sm-5">
 
-                        <p>First Name: Atma</p>
-                        <p>Last Name: Rama</p>
-                        <p>Date of birth: 22.12.1989 </p>
-                        <p>Bio: Some text</p>
+                        <p>First Name: {{ person.first_name }}</p>
+                        <p>Last Name: {{ person.last_name }}</p>
+                        <p>Date of birth: {{ person.date_of_birth }} </p>
+                        <p>Bio: {{ person.bio }}</p>
                 </div>
 
                 <div class="col-sm-5">
-                        <p>Email: email@email.com</p>
-                        <p>Jabber: jab@mail.com</p>
-                        <p>Skype: skype.test</p>
-                        <p>Other contacts: 0933890389</p>
+                        <p>Email: {{ person.bio }}</p>
+                        <p>Jabber: {{ person.jabber }}</p>
+                        <p>Skype: {{ person.skype }}</p>
+                        <p>Other contacts: {{ person.other }}</p>
 
                 </div>
             </div>
