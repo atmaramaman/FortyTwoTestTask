@@ -1,0 +1,34 @@
+[
+{
+  "pk": 1,
+  "model": "auth.user",
+  "fields": {
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "is_active": true,
+    "is_superuser": true,
+    "is_staff": true,
+    "last_login": "2016-07-05T15:57:11.447Z",
+    "groups": [],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$12000$279RDuDxTXHR$0Gb9IZB17Sc0fl4gwG4YxcMq24bxGmwpDSQTZcchp0Y=",
+    "email": "admin@i.ua",
+    "date_joined": "2016-07-05T13:39:57.258Z"
+  }
+},
+{
+  "pk": 1,
+  "model": "hello.person",
+  "fields": {
+    "bio": "I was born in Lviv, Ukraine in 2002. I'm 14 years old. I am very friendly, but only with people that I think are quite good. I happen really impatient and curious, but I do not consider it a disadvantage. Do not know whether to write. I think I've told everything about myself. I do not think my life is boring because every day confronted with something new and interesting for me. For example: meeting new people at school or a meeting with the best friends.",
+    "first_name": "Atma",
+    "last_name": "Rama",
+    "other": "0633890330",
+    "date_of_birth": "2002-07-05",
+    "skype": "skype.test",
+    "jabber": "jabber@email.com",
+    "email": "email@email.com"
+  }
+}
+]
