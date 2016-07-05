@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}{% endblock title %}Site Name</title>
+        <title>{% block title %}{% endblock title %}42 Test</title>
 
         <meta http-equiv="X-UA-Compatible" content="chrome=IE7" />
 
@@ -11,12 +11,28 @@
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
         <link rel="stylesheet" href="{% static 'css/screen.css' %}" media="screen, projection"/>
 
         {% block extra_head %}{% endblock extra_head %}
 
     </head>
-    <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
+    <!-- Header -->
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle"
+                        data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">42 Coffecups Test Assignment</a>
+            </div>
+        </div>
+    </div>
         {% block content %}{% endblock content %}
+        {% block errors %}{% endblock errors %}
     </body>
 </html>
