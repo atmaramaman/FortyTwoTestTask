@@ -1,9 +1,17 @@
+# -*- coding: utf-8 -*-
+
 from django.test import TestCase
+from django.core.urlresolvers import reverse
 
-# Create your tests here.
 
+class ContactPageTest(TestCase):
+    """ Test for root page with contacts """
 
-class SomeTests(TestCase):
-    def test_math(self):
-        "put docstrings in your tests"
-        assert(2 + 2 == 4)
+    def setUp(self):
+        self.response = self.client.get(reverse('contact_page_view'))
+
+    def test_title_on_page(self):
+        """ Test for contact page title """
+
+        self.assertEqual(self.response.status_code, 200)
+        self.assertContains(self.response, '42 Coffee Cups Test Assignment')

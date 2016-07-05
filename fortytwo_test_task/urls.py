@@ -1,11 +1,10 @@
-from django.conf.urls import patterns, include, url
-from django.views.generic import TemplateView
-
+from django.conf.urls import include, url
 from django.contrib import admin
+
 admin.autodiscover()
 
 urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^template/', TemplateView.as_view(template_name='contact_page.html'), name='template'),
+    url(r'^$', 'apps.hello.views.contacts', name='contact_page_view'),
 ]
