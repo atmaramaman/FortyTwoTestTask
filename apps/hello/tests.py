@@ -5,6 +5,9 @@ from django.core.urlresolvers import reverse
 from django.utils.encoding import smart_unicode
 from apps.hello.models import Person
 
+from django.http import HttpRequest
+from django.shortcuts import render
+
 
 class ContactPageTest(TestCase):
     """ Tests for main page with contacts """
@@ -35,3 +38,34 @@ class PersonModelTest(TestCase):
             smart_unicode(person),
             "{} {}".format(person.first_name, person.last_name)
         )
+
+
+class PersonDataViewTest(TestCase):
+    """Test person data view."""
+
+    def test_displaying_person_data_on_page(self):
+        """Test for displaying person data on page."""
+
+        # The database is empty
+        no_person = None
+        request = HttpRequest()
+        response = render(request, 'contact_page.html', {'person': no_person})
+        self.assertContains(response, 'The database is empty.')
+
+        # One person in database
+        person_1 = Person.objects.first()
+        self.assertEqual(1, Person.objects.count())
+        response = self.client.get(reverse('contact_page_view'))
+        self.assertContains(response, person_1.first_name)
+
+        # Two and more persons in database
+        person_2 = Person.objects.create(
+            first_name='Second',
+            last_name='Person',
+            email='second0@email.com',
+            jabber='jabber@test.com'
+        )
+        self.assertEqual(2, Person.objects.count())
+        response = self.client.get(reverse('contact_page_view'))
+        self.assertContains(response, person_1.first_name)
+        self.assertNotContains(response, person_2.first_name)
