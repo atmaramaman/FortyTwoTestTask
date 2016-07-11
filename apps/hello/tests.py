@@ -74,13 +74,15 @@ class PersonDataViewTest(TestCase):
 class RequestsPageTest(TestCase):
     """ Test for requests page """
 
-    def test_hard_coded_data_on_page(self):
-        """ Test for requests page with hard-coded data """
+    def test_data_view_on_page(self):
+        """ Test for data view on requests page """
+        request = Request.objects.create(
+            method="GET",
+            path="/"
+        )
         response = self.client.get(reverse('requests_page_view'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'GET')
-        self.assertContains(response, '/')
-        self.assertContains(response, '1989-12-22')
+        self.assertContains(response, request.path)
 
 
 class RequestModelTest(TestCase):

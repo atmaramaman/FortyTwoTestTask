@@ -1,13 +1,24 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block title %}Requests{% endblock title %}
 
+{% block content %}
     <div class="container">
+    {% if requests %}
         <div class="row">
             <div class="col-sm-5">
-                <p>Method: {{ method }} Path: {{ path }} Time: {{ time }}</p>
+                {% for request in requests %}
+                    <p>Method: {{ request.method }} Path: {{ request.path }} Time: {{ request.time }}</p>
+                {% endfor %}
             </div>
         </div>
+    {% else %}
+            <div class="row">
+                <div class="col-sm-5">
+                    <h3>The database is empty.</h3>
+                </div>
+            </div>
+    {% endif %}
     </div>
  <hr>
     <div class="container">

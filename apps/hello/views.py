@@ -1,4 +1,4 @@
-from apps.hello.models import Person
+from apps.hello.models import Person, Request
 from django.shortcuts import render
 
 
@@ -8,5 +8,5 @@ def contact(request):
 
 
 def requests(request):
-    context = {'method': "'GET'", 'path': "'/'", 'time': "'1989-12-22'"}
-    return render(request, 'requests_page.html', context)
+    requests = Request.objects.order_by('-time')[:10]
+    return render(request, 'requests_page.html', {'requests': requests})
