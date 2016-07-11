@@ -3,7 +3,7 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.utils.encoding import smart_unicode
-from apps.hello.models import Person
+from apps.hello.models import Person, Request
 
 from django.http import HttpRequest
 from django.shortcuts import render
@@ -81,3 +81,17 @@ class RequestsPageTest(TestCase):
         self.assertContains(response, 'GET')
         self.assertContains(response, '/')
         self.assertContains(response, '1989-12-22')
+
+
+class RequestModelTest(TestCase):
+    """ Test for Request model """
+
+    def test_request_model(self):
+        """ Test for saving Request object in db """
+
+        Request.objects.create(
+            method="GET",
+            path="/",
+            time='1989-12-22 19:40:21'
+        )
+        self.assertEqual(1, Request.objects.count())

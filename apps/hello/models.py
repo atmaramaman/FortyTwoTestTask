@@ -24,3 +24,9 @@ class Person(models.Model):
 
     def __unicode__(self):
         return '{} {}'.format(self.first_name, self.last_name)
+
+
+class Request(models.Model):
+    method = models.CharField(max_length=10)
+    path = models.CharField(max_length=100)
+    time = models.DateTimeField(auto_now_add=True)
