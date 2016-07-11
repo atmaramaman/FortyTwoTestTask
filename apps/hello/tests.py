@@ -69,3 +69,15 @@ class PersonDataViewTest(TestCase):
         response = self.client.get(reverse('contact_page_view'))
         self.assertContains(response, person_1.first_name)
         self.assertNotContains(response, person_2.first_name)
+
+
+class RequestsPageTest(TestCase):
+    """ Test for requests page """
+
+    def test_hard_coded_data_on_page(self):
+        """ Test for requests page with hard-coded data """
+        response = self.client.get(reverse('requests_page_view'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'GET')
+        self.assertContains(response, '/')
+        self.assertContains(response, '1989-12-22')
