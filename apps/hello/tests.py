@@ -97,3 +97,24 @@ class RequestModelTest(TestCase):
             time='1989-12-22 19:40:21'
         )
         self.assertEqual(1, Request.objects.count())
+
+
+class RequestsToDBTest(TestCase):
+    """ Test for middleware RequestsToDB """
+
+    def test_middleware(self):
+        """ Test for storing requests to db by middleware """
+
+        self.client.get(reverse('contact_page_view'))
+        self.client.get(reverse('requests_page_view'))
+
+        req_count = Request.objects.all().count()
+        req = Request.objects.first()
+        self.assertEqual(req_count, 2)
+        self.assertEqual(req.path, reverse('contact_page_view'))
+        self.assertEqual(req.method, 'GET')
+
+        response = self.client.get(reverse('requests_page_view'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'back')
+        self.assertTemplateUsed(response, 'requests_page.html')
