@@ -110,7 +110,7 @@ class RequestsToDBTest(TestCase):
 
         req_count = Request.objects.all().count()
         req = Request.objects.first()
-        self.assertEqual(req_count, 2)
+        self.assertEqual(req_count, 1)
         self.assertEqual(req.path, reverse('contact_page_view'))
         self.assertEqual(req.method, 'GET')
 
