@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block title %}Requests{% endblock title %}
+{% block title %}{% endblock title %}
 
 {% block extra_head %}
 <script type="text/javascript">
@@ -16,7 +16,7 @@ var REQUESTS_PAGE_URL = '{% url "requests_page_view" %}';
         <div class="row">
             <div id="ajax_requests" class="col-sm-10">
                 {% for request in requests %}
-                    <p>Method: {{ request.method }} Path: {{ request.path }} Time: {{ request.time }}</p>
+                    <p>Method:'{{request.method}}' Path:'{{request.path}}' Time:'{{request.time}}'</p>
                 {% endfor %}
             </div>
         </div>

@@ -10,13 +10,13 @@ def contact(request):
 
 
 def requests(request):
-    requests = Request.objects.order_by('-time')[:10]
+    ten_requests = Request.objects.order_by('-id')[:10]
+    new_request = Request.objects.last()
     if request.is_ajax():
         response_data = {
-            'request': [
-                "Method:'{}' Path:'{}' Time:'{}'".format(
-                    req.method, req.path, req.time) for req in requests
-                ]
+            'request': "Method:'{}' Path:'{}' Time:'{}'".format(
+                new_request.method, new_request.path, new_request.time
+                )
         }
         return HttpResponse(json.dumps(response_data))
-    return render(request, 'requests_page.html', {'requests': requests})
+    return render(request, 'requests_page.html', {'requests': ten_requests})

@@ -1,3 +1,4 @@
+from datetime import datetime
 from models import Request
 
 
@@ -8,6 +9,7 @@ class RequestsToDB(object):
 
         method = request.method
         path = request.path
+        time = datetime.now().strftime('%d/%b/%Y %H:%M:%S')
         if not request.is_ajax() and path != '/requests/':
-            request = Request(method=method, path=path)
+            request = Request(method=method, path=path, time=time)
             request.save()

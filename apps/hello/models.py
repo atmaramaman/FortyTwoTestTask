@@ -29,4 +29,11 @@ class Person(models.Model):
 class Request(models.Model):
     method = models.CharField(max_length=10)
     path = models.CharField(max_length=100)
-    time = models.DateTimeField(auto_now_add=True)
+    time = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = "Request"
+        verbose_name_plural = "Requests"
+
+    def __unicode__(self):
+        return '{} {}'.format(self.path, self.time)
