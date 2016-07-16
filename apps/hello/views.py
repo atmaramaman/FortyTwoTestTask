@@ -11,12 +11,15 @@ def contact(request):
 
 def requests(request):
     ten_requests = Request.objects.order_by('-id')[:10]
-    new_request = Request.objects.last()
+    count = Request.objects.count()
     if request.is_ajax():
         response_data = {
-            'request': "Method:'{}' Path:'{}' Time:'{}'".format(
-                new_request.method, new_request.path, new_request.time
-                )
+            'request': [
+                "Method:'{}' Path:'{}' Time:'{}'".format(
+                    req.method, req.path, req.time) for req in ten_requests
+                ],
+            'count': count
+
         }
         return HttpResponse(json.dumps(response_data))
     return render(request, 'requests_page.html', {'requests': ten_requests})
